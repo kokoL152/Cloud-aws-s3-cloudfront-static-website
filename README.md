@@ -35,7 +35,7 @@ graph LR
         CloudFront;
         S3;
     end
-
+```
 Architecture Explanation:
 
 A user's browser initiates an HTTPS request to the CloudFront domain.
