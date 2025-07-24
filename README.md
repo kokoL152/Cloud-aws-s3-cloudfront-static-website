@@ -90,7 +90,7 @@ In your bucket's "Permissions" tab, edit the "Bucket policy".
 Paste the following JSON, replacing YOUR_BUCKET_NAME with your actual bucket name, to allow public s3:GetObject access.
 
 JSON
-
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -107,6 +107,7 @@ JSON
         }
     ]
 }
+```
 Save the policy.
 
 3. Accelerate Content Delivery with Amazon CloudFront
