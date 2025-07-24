@@ -1,4 +1,4 @@
-# 🚀 AWS S3 & CloudFront Static Website Deployment Project
+## 🚀 AWS S3 & CloudFront Static Website Deployment Project
 
 This is an entry-level cloud architecture project designed to demonstrate how to host a static website using Amazon S3 and achieve global content delivery and acceleration with Amazon CloudFront.
 
