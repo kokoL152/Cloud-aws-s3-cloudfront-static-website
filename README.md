@@ -37,6 +37,7 @@ graph LR
     end
 ```
 Architecture Explanation:
+---
 
 A user's browser initiates an HTTPS request to the CloudFront domain.
 
@@ -48,15 +49,19 @@ S3 returns the requested static file to CloudFront.
 
 CloudFront caches the file and delivers it to the user.
 
+
 🚀 Deployment Steps (Step-by-Step)
-1. Prepare Static Website Content
+---
+
+### 1. Prepare Static Website Content 
+
 Create the following files:
 
 index.html: The main page of your website.
 
 error.html: A custom 404 error page (optional, but recommended).
 
-2. Create an S3 Bucket and Host the Static Website
+### 2. Create an S3 Bucket and Host the Static Website
 Create S3 Bucket:
 
 Log in to the AWS Management Console and navigate to the S3 service.
@@ -90,27 +95,27 @@ In your bucket's "Permissions" tab, edit the "Bucket policy".
 Paste the following JSON, replacing YOUR_BUCKET_NAME with your actual bucket name, to allow public s3:GetObject access.
 
 JSON
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": [
-                "s3:GetObject"
-            ],
-            "Resource": [
-                "arn:aws:s3:::YOUR_BUCKET_NAME/*"
-            ]
-        }
-    ]
-}
-```
+
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "PublicReadGetObject",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": [
+                    "s3:GetObject"
+                ],
+                "Resource": [
+                    "arn:aws:s3:::YOUR_BUCKET_NAME/*"
+                ]
+            }
+        ]
+    }
+
 Save the policy.
 
-3. Accelerate Content Delivery with Amazon CloudFront
+### 3. Accelerate Content Delivery with Amazon CloudFront
 Create CloudFront Distribution:
 
 Navigate to the CloudFront service.
@@ -137,7 +142,7 @@ Wait for Deployment: CloudFront distribution deployment takes 5-15 minutes. Wait
 
 Test CloudFront Website: Copy the "Domain name" of your CloudFront distribution (e.g., d123exampleabcd.cloudfront.net) and paste it into your browser.
 
-4. (Optional) Configure CloudFront Custom Error Pages
+### 4. (Optional) Configure CloudFront Custom Error Pages
 To ensure CloudFront also uses your error.html page:
 
 Go to your CloudFront distribution details, click the "Custom error pages" tab.
@@ -150,7 +155,7 @@ Under "Customize error response", select "Yes", and set "Response page path" to 
 
 You can set "HTTP Response code" to 200 OK (for a user-friendly experience) or 404 Not Found (for semantic correctness).
 
-5. (Optional) Enable CloudFront Standard Access Logs
+### 5. (Optional) Enable CloudFront Standard Access Logs
 If you wish to track user access records:
 
 Go to your CloudFront distribution details, under the "General" tab, find the "Settings" section.
@@ -160,6 +165,8 @@ Edit "Standard logging" settings and select an S3 bucket to store the logs.
 Note: Log storage and transfer may incur minimal costs, but usually fall within the Free Tier limits.
 
 🧹 Resource Cleanup (To Avoid Unnecessary Costs)
+---
+
 After completing your learning, it's crucial to clean up the AWS resources you created to avoid incurring unnecessary charges:
 
 Delete CloudFront Distribution:
@@ -177,6 +184,8 @@ Select all objects, click "Delete", and confirm by typing "permanently delete".
 Go back to the bucket list, select your bucket, click "Delete", and confirm by typing the bucket name.
 
 🙋‍♂️ Interview Analysis Points
+---
+   
 When discussing this project in an interview, you can elaborate on the following points:
 
 Technology Stack Choice: Why choose S3 and CloudFront for static website hosting? (Cost-effectiveness, scalability, high availability, serverless nature).
@@ -194,8 +203,10 @@ Troubleshooting: How would you troubleshoot if the website becomes inaccessible?
 Future Scalability: How would you extend this architecture for a dynamic website or one requiring user authentication? (e.g., by introducing Lambda@Edge, API Gateway, DynamoDB, etc.).
 
 👤 Author Information
+---
 kokoL152
 
 
 License
+---
 This project is created for educational and demonstration purposes and comes with no specific license.
